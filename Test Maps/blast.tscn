@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqraagjan1amd"]
+
+[ext_resource type="Script" uid="uid://xn154byjuq4y" path="res://Test Maps/blast.gd" id="1_x102g"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y36cp"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1xwd"]
+transparency = 1
+albedo_color = Color(0.321569, 1, 0.423529, 0.321569)
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.000303994, 0.277752, 0.863582, 1)
+emission_energy_multiplier = 7.04
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_y36cp"]
+material = SubResource("StandardMaterial3D_o1xwd")
+radius = 2.0
+height = 4.0
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_x102g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_y36cp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("SphereMesh_y36cp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

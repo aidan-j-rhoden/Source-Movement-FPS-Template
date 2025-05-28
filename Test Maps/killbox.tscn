@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://3lidiwm4n66b"]
+
+[ext_resource type="Script" uid="uid://dfh3a8lfeg3us" path="res://Test Maps/killbox.gd" id="1_5wsc1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m3074"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wsc1"]
+transparency = 1
+albedo_color = Color(0.627451, 0, 0, 0.788235)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.42
+
+[node name="killbox" type="Node3D"]
+script = ExtResource("1_5wsc1")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+shape = SubResource("BoxShape3D_m3074")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D"]
+material_override = SubResource("StandardMaterial3D_5wsc1")
+use_collision = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

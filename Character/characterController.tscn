@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://d01r2r3nfk2ru"]
+
+[ext_resource type="Script" uid="uid://djlc6snwvw1nq" path="res://Character/character_controller.gd" id="1_4vumf"]
+[ext_resource type="Script" uid="uid://cm6b7jl8k6u4o" path="res://Character/animation_utils.gd" id="2_o7bl0"]
+[ext_resource type="PackedScene" uid="uid://ei35qtramxen" path="res://Test Char/y_bot.tscn" id="3_60eob"]
+[ext_resource type="PackedScene" uid="uid://ci00xj8ih6vcl" path="res://Character/death_cam.tscn" id="4_k71nv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qa34y"]
+
+[node name="CharacterController" type="CharacterBody3D"]
+platform_floor_layers = 4294967291
+script = ExtResource("1_4vumf")
+
+[node name="AnimationUtils" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_o7bl0")
+
+[node name="WorldModel" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Y_Bot" parent="WorldModel" instance=ExtResource("3_60eob")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="DeathCam" parent="WorldModel/Y_Bot" instance=ExtResource("4_k71nv")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.74846e-07, 1, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_qa34y")
+
+[node name="HeadOrigonalPos" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="Head" type="Node3D" parent="HeadOrigonalPos"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="HeadOrigonalPos/Head"]
+unique_name_in_owner = true
+cull_mask = 1048573
+fov = 80.0
+
+[node name="CanvasLayerDebug" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayerDebug"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayerDebug/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayerDebug/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "  Speed: "
+
+[node name="vel" type="Label" parent="CanvasLayerDebug/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.131542, 0.0803209, 1)
+theme_override_font_sizes/font_size = 50
+text = "asdf"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayerDebug/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayerDebug/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "  FPS: "
+
+[node name="fps" type="Label" parent="CanvasLayerDebug/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.133333, 0.0784314, 1)
+theme_override_font_sizes/font_size = 50
+text = "asdf"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayerDebug/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayerDebug/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "  Health: "
+
+[node name="health" type="Label" parent="CanvasLayerDebug/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.133333, 0.0784314, 1)
+theme_override_font_sizes/font_size = 50
+text = "asdf"
+
+[node name="StairsAheadRayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+editor_description = "This raycast detects forward geometry and, if the step up is under the threshold, helps smoothly glide up it.
+Don't move it.  The position is set in code."
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.545769, -1.2499)
+target_position = Vector3(0, -0.55, 0)
+
+[node name="StairsBelowRayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+editor_description = "This raycast, when you go off the edge, detects if you're simply steping down, or falling off.  Don't move it at all."
+target_position = Vector3(0, -0.75, 0)
