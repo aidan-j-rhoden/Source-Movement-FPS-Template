@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=3 uid="uid://63ald24ogh86"]
 
-[ext_resource type="PackedScene" uid="uid://d01r2r3nfk2ru" path="res://Character/characterController.tscn" id="1_csfvj"]
 [ext_resource type="Script" uid="uid://b4ludned1fyop" path="res://Test Maps/map_01.gd" id="1_f07ge"]
+[ext_resource type="PackedScene" uid="uid://bokxdo4awckkj" path="res://Test Char/TheCharacter.tscn" id="2_u3dhi"]
 [ext_resource type="PackedScene" uid="uid://bqraagjan1amd" path="res://Test Maps/blast.tscn" id="3_o1xwd"]
 [ext_resource type="Material" uid="uid://brhh6mjkg40h6" path="res://Test Maps/surf01.tres" id="3_y36cp"]
 [ext_resource type="PackedScene" uid="uid://3lidiwm4n66b" path="res://Test Maps/killbox.tscn" id="5_u3dhi"]
@@ -129,10 +129,10 @@ script = ExtResource("1_f07ge")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
+[node name="TheCharacter" parent="." instance=ExtResource("2_u3dhi")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_f07ge")
-
-[node name="CharacterController" parent="." instance=ExtResource("1_csfvj")]
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(11.97, 0, 0, 0, 11.97, 0, 0, 0, 11.97, 14.0293, -0.0117132, 0)
