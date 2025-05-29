@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bokxdo4awckkj"]
+
+[ext_resource type="PackedScene" uid="uid://d01r2r3nfk2ru" path="res://Character/characterController.tscn" id="1_7i83s"]
+[ext_resource type="PackedScene" uid="uid://ei35qtramxen" path="res://Test Char/y_bot.tscn" id="2_6mqw0"]
+[ext_resource type="PackedScene" uid="uid://ci00xj8ih6vcl" path="res://Character/death_cam.tscn" id="3_6mqw0"]
+
+[node name="TheCharacter" type="Node3D"]
+
+[node name="CharacterController" parent="." instance=ExtResource("1_7i83s")]
+
+[node name="Y_Bot" parent="CharacterController/WorldModel" index="0" instance=ExtResource("2_6mqw0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="DeathCam" parent="CharacterController/WorldModel/Y_Bot" instance=ExtResource("3_6mqw0")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2.62268e-07, 1, -3)
+
+[editable path="CharacterController"]
